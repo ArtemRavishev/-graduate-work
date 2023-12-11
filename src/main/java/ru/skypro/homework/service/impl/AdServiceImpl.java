@@ -17,6 +17,7 @@ import ru.skypro.homework.repository.AdRepository;
 import ru.skypro.homework.repository.UserRepository;
 import ru.skypro.homework.security.AuthProvider;
 import ru.skypro.homework.service.AdService;
+import ru.skypro.homework.service.CommentService;
 import ru.skypro.homework.service.ImageService;
 
 import java.util.List;
@@ -33,6 +34,9 @@ public class AdServiceImpl implements AdService {
     private final ImageService imageService;
     private final UserRepository userRepository;
     private final AuthProvider authProvider;
+    private final CommentService commentService;
+
+
 
     @Override
     public AdsDto getAllAds() {
@@ -62,7 +66,6 @@ public class AdServiceImpl implements AdService {
                 .map(mapper::convertToExtendedDto)
                 .orElseThrow(AdNotFoundException::new);
     }
-
     @Transactional
     @Override
     public void removeAd(Integer id) {
@@ -71,10 +74,12 @@ public class AdServiceImpl implements AdService {
                     Image image = ad.getImage();
                     repository.deleteById(ad.getId());
                     imageService.delete(image);
+                    commentService.deleteAllCommentsByAdId(ad.getId());
                 }, () -> {
                     throw new AdNotFoundException();
                 });
     }
+
 
     @Transactional
     @Override

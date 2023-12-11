@@ -79,5 +79,11 @@ public class CommentServiceImpl implements CommentService {
     public boolean existsCommentByIdAndUsername(Integer id, String username) {
         return repository.existsByIdAndUserEmail(id, username);
     }
+    @Transactional
+    @Override
+    public void deleteAllCommentsByAdId(Integer adId) {
+        List<Comment> comments = repository.findByAdId(adId);
+        repository.deleteAll(comments);
+    }
 
 }

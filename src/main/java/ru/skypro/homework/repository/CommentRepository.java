@@ -14,4 +14,6 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
     Optional<Comment> findByIdAndAd_Id(Integer id, Integer adId);
 
     boolean existsByIdAndUserEmail(Integer id, String email);
+
+    List<Comment> findByAdId(Integer adId);
 }

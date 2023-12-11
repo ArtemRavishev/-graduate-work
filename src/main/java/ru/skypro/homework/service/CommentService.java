@@ -53,5 +53,12 @@ public interface CommentService {
      */
     boolean existsCommentByIdAndUsername(Integer id, String username);
 
+
+    /**
+     * Удаление всех комментариев
+     *
+     * @param adId id объявления
+     */
+    void deleteAllCommentsByAdId(Integer adId);
 }
 

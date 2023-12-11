@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ public class CommentDto {
     @NotBlank
     private String authorFirstName;
 
+    @CreationTimestamp
     @Schema(description = "дата и время создания комментария в миллисекундах с 00:00:00 01.01.1970 ")
     @NotBlank
     private LocalDateTime createdAt;

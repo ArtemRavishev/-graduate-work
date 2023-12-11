@@ -1,6 +1,7 @@
 package ru.skypro.homework.models;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class Comment {
     private Integer id;
     @Column(name = "text")
     private String text;
+    @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @ManyToOne(optional = false)
@@ -29,7 +31,6 @@ public class Comment {
     @ManyToOne(optional = false)
     @JoinColumn(name = "ad_id",referencedColumnName = "id")
     private Ad ad;
-
     @PrePersist
     private void init() {
         createdAt = LocalDateTime.now();
