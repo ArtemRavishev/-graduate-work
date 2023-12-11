@@ -7,7 +7,7 @@
 
     <changeSet id="4-base" author="rempll">
 
-        <preConditions>
+        <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="users"/>
             </not>
