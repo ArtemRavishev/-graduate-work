@@ -73,7 +73,7 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public byte[] download(String imagePath) {
         Path fullImagePath = Path.of(bucket, imagePath);
-        return Files.exists(fullImagePath) ? Files.readAllBytes(fullImagePath) : new byte[]{};
+        return Files.exists(fullImagePath) ? Files.readAllBytes(fullImagePath) : null;
     }
 
     @Transactional
